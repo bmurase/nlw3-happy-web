@@ -1,9 +1,11 @@
 import L from 'leaflet';
 import React from 'react';
-import { FiArrowLeft, FiPlus } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import { useHistory } from 'react-router-dom';
 import mapMarkerImg from '../images/map-marker.svg';
+import '../styles/pages/create-orphanage.css';
+
+import Sidebar from '../components/Sidebar';
 
 const happyMapIcon = L.icon({
   iconUrl: mapMarkerImg,
@@ -13,18 +15,9 @@ const happyMapIcon = L.icon({
 })
 
 const CreateOrphanage: React.FC = () => {
-  const { goBack } = useHistory();
   return (
     <div id="page-create-orphanage">
-      <aside>
-        <img src={mapMarkerImg} alt="Happy"/>
-
-        <footer>
-          <button type="button" onClick={goBack}>
-            <FiArrowLeft size={24} color="#FFF" />
-          </button>
-        </footer>
-      </aside>
+      <Sidebar />
 
       <main>
         <form className="create-orphanage-form">
@@ -33,6 +26,7 @@ const CreateOrphanage: React.FC = () => {
 
             <MapContainer
               center={[-23.4090972,-51.9474355]}
+              style={{ width: "100%", height: 280 }}
               zoom={15}
             >
               <TileLayer
@@ -74,12 +68,12 @@ const CreateOrphanage: React.FC = () => {
             </div>
 
             <div className="input-block">
-              <label htmlFor="opening_hours">Horário</label>
+              <label htmlFor="opening_hours">Horário de funcionamento</label>
               <input id="opening_hour"/>
             </div>
 
             <div className="input-block">
-              <label htmlFor="open_on_weekends">Atende fim de semana</label>
+              <label htmlFor="open_on_weekends">Atende aos fins de semana</label>
 
               <div className="button-select">
                 <button type="button" className="active">Sim</button>
